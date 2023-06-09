@@ -1,0 +1,34 @@
+<div class="flex flex-col justify-center items-center basis-full w-full h-24 bg-gray-400">
+  <p class="text-5xl font-bold items-center ">Welcome to Movie Blazer</p>
+</div>
+<div class="flex-col">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th class="border-b py-2 px-4">Movie Name</th>
+        <th class="border-b py-2 px-4">Description</th>
+        <th class="border-b py-2 px-4">Genre</th>
+        <th class="border-b py-2 px-4">Language</th>
+        <th class="border-b py-2 px-4">Director</th>
+        <th class="border-b py-2 px-4">Release Date</th>
+        <th class="border-b py-2 px-4">Run Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @movies.each do |movie| %>
+      <tr>
+        <td class="border-b py-2 px-4"><%= movie.name %></td>
+        <td class="border-b py-2 px-4"><%= movie.description %></td>
+        <td class="border-b py-2 px-4"><%= movie.genre %></td>
+        <td class="border-b py-2 px-4"><%= movie.language %></td>
+        <td class="border-b py-2 px-4"><%= movie.director %></td>
+        <td class="border-b py-2 px-4"><%= movie.release_date %></td>
+        <td class="border-b py-2 px-4"><%= movie.run_time %></td>
+        <td class="border-b py-2 px-4"><%= movie.created_at %></td>
+        
+      </tr>
+      <% end %>
+      </tbody>
+  </table>
+</div>
+
