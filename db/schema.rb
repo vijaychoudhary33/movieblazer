@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_072821) do
     t.string "language"
     t.string "director"
     t.date "release_date"
-    t.time "run_time"
+    t.decimal "run_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

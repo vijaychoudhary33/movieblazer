@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
   def index
+    # @q = Movie.ransack(params[:q])
+    # @movies = @q.result(distinct: true)
     @movies = Movie.all
   end
   def new
