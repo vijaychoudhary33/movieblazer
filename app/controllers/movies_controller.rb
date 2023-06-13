@@ -1,8 +1,7 @@
 class MoviesController < ApplicationController
   def index
-    # @q = Movie.ransack(params[:q])
-    # @movies = @q.result(distinct: true)
-    @movies = Movie.order(:name).page params[:page]
+    @q = Movie.ransack(params[:query])
+    @movies = @q.result.page(params[:page])
   end
 
   def new
@@ -10,7 +9,8 @@ class MoviesController < ApplicationController
   end
 
   def create 
-    @movie = Movie.new(movie_params)
+    @movie = Movie.new(name_cont: movie_params)
+    @movie.image.attach(params[:movie][:image])
 
     if @movie.save
       redirect_to @movie
@@ -18,11 +18,14 @@ class MoviesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def edit
+    @movie = Movie.find(params[:id])
+  end
 
   private
 
   def movie_params
-    params.require(:movie).permit(:name, :description, :genre, :language, :director, :release_date, :run_time)
+    params.require(:movie).permit(:name, :description, :genre, :language, :director, :release_date, :run_time, :image)
   end
 
       

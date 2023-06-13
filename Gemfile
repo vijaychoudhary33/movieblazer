@@ -75,7 +75,10 @@ group :test do
 end
 
 gem 'faker'
+gem 'ransack'
+
 gem 'kaminari'
+gem "image_processing", ">= 1.2"
 
 
 

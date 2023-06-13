@@ -1,15 +1,25 @@
+<div class= "w-6 h-6">
+   
+   
+       
+    
+   
+</div>
 <div class="flex flex-col justify-center items-center basis-full w-full h-24 bg-gray-400">
   <p class="text-5xl font-bold items-center ">Welcome to Movie Blazer</p>
 </div>
-<%# <div class="col-lg-10"> %>
-   <%# <%= search_form_for @q, remote: true do  |f|%> 
-  
-   <%# <% end %> 
-<%# </div> %>
-<div class="flex-col">
+<div>
+<%= search_form_for @q, url: movies_path do |f| %>
+  <%= f.label :name, 'Search' %>
+  <%= f.search_field :genre_cont %>
+  <%= f.submit 'Search' %>
+<% end %>
+</div>
+<div class="flex-col  ">
   <table class="w-full border-collapse">
     <thead>
       <tr>
+        <th class="border-b py-2 px-4">Movie Image</th>
         <th class="border-b py-2 px-4">Movie Name</th>
         <th class="border-b py-2 px-4">Description</th>
         <th class="border-b py-2 px-4">Genre</th>
@@ -23,6 +33,7 @@
     <tbody>
       <% @movies.each do |movie| %>
       <tr>
+        <td class="w-6 h-6"><%= image_tag movie.image_url %>
         <td class="border-b py-2 px-4"><%= movie.name %></td>
         <td class="border-b py-2 px-4"><%= movie.description %></td>
         <td class="border-b py-2 px-4"><%= movie.genre %></td>
@@ -31,12 +42,17 @@
         <td class="border-b py-2 px-4"><%= movie.release_date %></td>
         <td class="border-b py-2 px-4"><%= movie.rating %></td>
         <td class="border-b py-2 px-4"><%= movie.run_time %></td>
+        
+
       
         
       </tr>
       <% end %>
       </tbody>
+       
   </table>
 </div>
-<%= paginate @movies %>
+<div>
+   <%= paginate @movies %>
+</div>
 
