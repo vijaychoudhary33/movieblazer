@@ -1,58 +1,66 @@
-<div class= "w-6 h-6">
-   
-   
-       
-    
-   
+<div class="w-full flex justify-center py-5 bg-slate-500" >
+  <h1 class="text-4xl font-bold items-center ">Welcome to Movie Blazer</h1>
 </div>
-<div class="flex flex-col justify-center items-center basis-full w-full h-24 bg-gray-400">
-  <p class="text-5xl font-bold items-center ">Welcome to Movie Blazer</p>
+<div class="flex  justify-center items-center   bg-gray-400">
+ 
 </div>
-<div>
-<%= search_form_for @q, url: movies_path do |f| %>
-  <%= f.label :name, 'Search' %>
-  <%= f.search_field :genre_cont %>
-  <%= f.submit 'Search' %>
-<% end %>
-</div>
-<div class="flex-col  ">
-  <table class="w-full border-collapse">
-    <thead>
-      <tr>
-        <th class="border-b py-2 px-4">Movie Image</th>
-        <th class="border-b py-2 px-4">Movie Name</th>
-        <th class="border-b py-2 px-4">Description</th>
-        <th class="border-b py-2 px-4">Genre</th>
-        <th class="border-b py-2 px-4">Language</th>
-        <th class="border-b py-2 px-4">Director</th>
-        <th class="border-b py-2 px-4">Release Date</th>
-        <th class="border-b py-2 px-4">Rating</th>
-        <th class="border-b py-2 px-4">Run Time</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @movies.each do |movie| %>
-      <tr>
-        <td class="w-6 h-6"><%= image_tag movie.image_url %>
-        <td class="border-b py-2 px-4"><%= movie.name %></td>
-        <td class="border-b py-2 px-4"><%= movie.description %></td>
-        <td class="border-b py-2 px-4"><%= movie.genre %></td>
-        <td class="border-b py-2 px-4"><%= movie.language %></td>
-        <td class="border-b py-2 px-4"><%= movie.director %></td>
-        <td class="border-b py-2 px-4"><%= movie.release_date %></td>
-        <td class="border-b py-2 px-4"><%= movie.rating %></td>
-        <td class="border-b py-2 px-4"><%= movie.run_time %></td>
-        
+<div class="flex px-5 py-5">
+  <%= search_form_for @q do |f|%>
+    <h5 class="text-center">Filter Movies</h5>
+    <%= label_tag :name, "Name" %>
+    <%= f.text_field :name_cont, placeholder: "Enter movie name" %>
+    <%= label_tag :rating, "Rating" %>
+    <%= f.number_field :rating_cont , in: 1..10, step:1, placeholder: "Enter movie rating" %>
+    <%= label_tag :genre, "Genre" %>
+    <%= f.select :genre_cont, options_for_select(['Action', 'Crime Flim', 'Love', 'Time pass']), prompt: "Select a genFilterre" %>
+    <%= label_tag :language, "Language" %>
+    <%= f.select :language_cont, options_for_select(['English','Hindi','Franch','Tamil','Sanskrit'])  , prompt: "Select a language" %>
+    <div class="flex w-full">
+      <%= f.submit "Filter", class:"bg-indigo-400 text-white px-3 py-3 my-3 rounded w-[5rem] text-center ml-[4.5rem]" %>
+    </div>
+  <% end %>
+    <div class="flex">
+      <%= button_to "Clear",movies_path, method: :get  ,class:"bg-indigo-400 text-white rounded " %>
+    </div>
+  <div class="flex-col ">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b py-2 px-4">Movie Image</th>
+          <th class="border-b py-2 px-4">Movie Name</th>
+          <th class="border-b py-2 px-4">Description</th>
+          <th class="border-b py-2 px-4">Genre</th>
+          <th class="border-b py-2 px-4">Language</th>
+          <th class="border-b py-2 px-4">Director</th>
+          <th class="border-b py-2 px-4">Release Date</th>
+          <th class="border-b py-2 px-4">Rating</th>
+          <th class="border-b py-2 px-4">Run Time</th>
+        </tr>
+      </thead>
+      <tbody class="h-full">
+        <% @movies.each do |movie| %>
+        <tr>
+          <td class="w-6 h-6"><%= image_tag movie.image_url %>
+          <td class="border-b py-[1rem] px-4"><%= movie.name %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.description %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.genre %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.language %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.director %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.release_date %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.rating %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.run_time %></td>
+          
 
-      
         
-      </tr>
-      <% end %>
-      </tbody>
-       
-  </table>
+          
+        </tr>
+        <% end %>
+        </tbody>
+        
+    </table>
+  </div>
 </div>
 <div>
-   <%= paginate @movies %>
+    <%= paginate @movies %> 
 </div>
 
