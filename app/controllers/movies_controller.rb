@@ -3,23 +3,6 @@ class MoviesController < ApplicationController
     @q = Movie.ransack(params[:query])
     @movies = @q.result.page(params[:page])
 
-
-
-    # if params[:name].present?
-    #   @movies = @movies.where("lower(name) LIKE ?", "%#{params[:name.downcase]}%")
-    # end
-
-    # if params[:rating].present?
-    #   @movies = @movies.where("rating = ?", params[:rating])
-    # end
-
-    # if params[:genre].present?
-    #   @movies = @movies.where("genre LIKE ?", "%#{params[:genre]}%")
-    # end
-
-    # if params[:language].present?
-    #   @movies = @movies.where("language LIKE ?", "%#{params[:language]}%")
-    # end
   end
 
   def new

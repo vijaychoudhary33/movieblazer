@@ -5,24 +5,27 @@
  
 </div>
 <div class="flex px-5 py-5">
-  <%= search_form_for @q do |f|%>
-    <h5 class="text-center">Filter Movies</h5>
-    <%= label_tag :name, "Name" %>
-    <%= f.text_field :name_cont, placeholder: "Enter movie name" %>
-    <%= label_tag :rating, "Rating" %>
-    <%= f.number_field :rating_cont , in: 1..10, step:1, placeholder: "Enter movie rating" %>
-    <%= label_tag :genre, "Genre" %>
-    <%= f.select :genre_cont, options_for_select(['Action', 'Crime Flim', 'Love', 'Time pass']), prompt: "Select a genFilterre" %>
-    <%= label_tag :language, "Language" %>
-    <%= f.select :language_cont, options_for_select(['English','Hindi','Franch','Tamil','Sanskrit'])  , prompt: "Select a language" %>
-    <div class="flex w-full">
-      <%= f.submit "Filter", class:"bg-indigo-400 text-white px-3 py-3 my-3 rounded w-[5rem] text-center ml-[4.5rem]" %>
+  <div class="basis-1/6 w-full flex flex-col p-2">
+    <%= search_form_for @q do |f|%>
+    <div class="flex flex-col space-y-4">
+      <h5 class="text-center">Filter Movies</h5>
+      <%= label_tag :name, "Name" %>
+      <%= f.text_field :name_cont, placeholder: "Enter movie name" %>
+      <%= label_tag :rating, "Rating" %>
+      <%= f.number_field :rating_cont , in: 5..10, step: 1,type: :number, placeholder: "Enter movie rating" %>
+      <%= label_tag :genre, "Genre" %>
+      <%= f.select :genre_cont, ['Action', 'Crime Flim', 'Love', 'Time pass'], default: '', prompt: "Select a Filter" %>
+      <%= label_tag :language, "Language" %>
+      <%= f.select :language_cont, ['English','Hindi','Franch','Tamil','Sanskrit'] , default: '', prompt: "Select a language" %>
+      <div class="flex w-full justify-between items-baseline">
+        <%= button_to "Clear",movies_path, method: :get  ,class:"bg-indigo-400 text-white rounded w-[5rem] h-[48px]" %>
+        <%= f.submit "Filter", class:"bg-indigo-400 text-white px-3 py-3 my-3 rounded w-[5rem] text-center ml-[4.5rem]" %>
+      </div>
     </div>
-  <% end %>
-    <div class="flex">
-      <%= button_to "Clear",movies_path, method: :get  ,class:"bg-indigo-400 text-white rounded " %>
-    </div>
-  <div class="flex-col ">
+    <% end %>
+  </div>
+     
+  <div class=" basis-5/6 w-full flex flex-col p-2">
     <table class="w-full border-collapse">
       <thead>
         <tr>
