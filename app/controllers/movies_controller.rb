@@ -10,11 +10,11 @@ class MoviesController < ApplicationController
   end
 
   def create 
-    @movie = Movie.new(name_cont: movie_params)
+    @movie = Movie.new(movie_params)
     @movie.image.attach(params[:movie][:image])
 
     if @movie.save
-      redirect_to @movie
+      redirect_to @moviegybn  
     else
       render :new, status: :unprocessable_entity
     end

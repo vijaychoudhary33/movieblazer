@@ -18,11 +18,13 @@
       <%= label_tag :language, "Language" %>
       <%= f.select :language_cont, ['English','Hindi','Franch','Tamil','Sanskrit'] , default: '', prompt: "Select a language" %>
       <div class="flex w-full justify-between items-baseline">
-        <%= button_to "Clear",movies_path, method: :get  ,class:"bg-indigo-400 text-white rounded w-[5rem] h-[48px]" %>
         <%= f.submit "Filter", class:"bg-indigo-400 text-white px-3 py-3 my-3 rounded w-[5rem] text-center ml-[4.5rem]" %>
       </div>
-    </div>
     <% end %>
+    <div class="flex w-full justify-between items-baseline">
+        <%= button_to "Clear",movies_path, method: :get  ,class:"bg-indigo-400 text-white rounded w-[5rem] h-[48px]" %>
+      </div>
+    </div>
   </div>
      
   <div class=" basis-5/6 w-full flex flex-col p-2">
@@ -30,13 +32,13 @@
       <thead>
         <tr>
           <th class="border-b py-2 px-4">Movie Image</th>
-          <th class="border-b py-2 px-4">Movie Name</th>
+          <th class="border-b py-2 px-4"><%= sort_link(@q, :name, 'Name') %></th>
           <th class="border-b py-2 px-4">Description</th>
-          <th class="border-b py-2 px-4">Genre</th>
+          <th class="border-b py-2 px-4"><%= sort_link(@q, :genre, 'Genre') %></th>
           <th class="border-b py-2 px-4">Language</th>
           <th class="border-b py-2 px-4">Director</th>
           <th class="border-b py-2 px-4">Release Date</th>
-          <th class="border-b py-2 px-4">Rating</th>
+          <th class="border-b py-2 px-4"><%= sort_link(@q, :rating, 'Rating') %></th>
           <th class="border-b py-2 px-4">Run Time</th>
         </tr>
       </thead>
@@ -45,7 +47,7 @@
         <tr>
           <td class="w-6 h-6"><%= image_tag movie.image_url %>
           <td class="border-b py-[1rem] px-4"><%= movie.name %></td>
-          <td class="border-b py-[1rem] px-4"><%= movie.description %></td>
+          <td class="border-b py-[1rem] px-4"><%= movie.description%></td>
           <td class="border-b py-[1rem] px-4"><%= movie.genre %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.language %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.director %></td>
@@ -66,4 +68,5 @@
 <div>
     <%= paginate @movies %> 
 </div>
+
 
