@@ -3,6 +3,22 @@ class MoviesController < ApplicationController
     @q = Movie.ransack(params[:query])
     @movies = @q.result.page(params[:page])
 
+    @csv_string = CSV.generate do |csv|
+      csv <<  Movie.attribute_names
+      Movie.find_each do |movie|
+        csv << movie.attributes.values
+      end
+    end
+    def import()
+      file = params[:file]
+      csv_text = file.read
+      csv = CSV.parse(csv_text, headers: true)
+      csv.each do |row|
+        Movie.create!(row.to_hash)
+      end
+      
+    end
+
   end
 
   def new
