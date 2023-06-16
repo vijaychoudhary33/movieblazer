@@ -81,5 +81,5 @@ gem 'kaminari'
 gem "image_processing", ">= 1.2"
 gem 'csv'
 
-# A queing backedn to run asyncroneous jobs
+# A queing backedn to run asyncroneous jobs 
 gem "sidekiq"
