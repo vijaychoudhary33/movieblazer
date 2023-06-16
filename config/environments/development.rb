@@ -67,5 +67,5 @@ Rails.application.configure do
 
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  Paperclip.options[:command_path] = 'C:\Program Files (x86)\GnuWin32\bin'
+
 end
