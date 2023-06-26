@@ -82,4 +82,6 @@ gem "image_processing", ">= 1.2"
 gem 'csv'
 
 # A queing backedn to run asyncroneous jobs 
-gem "sidekiq"
+# gem "sidekiq"
+
+gem "devise", "~> 4.9"

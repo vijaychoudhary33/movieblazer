@@ -25,9 +25,13 @@
     <%= form.label :Release_Date, class: "block text-gray-700 text-sm font-bold mb-2" %>
     <%= form.date_field :release_date, class: "form-input mt-1 block w-full" %>
   </div>
+  <div class="mb-4">
+    <%= form.label :Rating, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.number_field  :rating, class: "form-input mt-1 block w-full" %>
+  </div>
    <div class="mb-4">
     <%= form.label :Run_Time, class: "block text-gray-700 text-sm font-bold mb-2" %>
-    <%= form.time_field :run_time, class: "form-input mt-1 block w-full" %>
+    <%= form.number_field :run_time, class: "form-input mt-1 block w-full" %>
   </div>
   <div class = "form-group">
      <% if @movie.image.attached?%>

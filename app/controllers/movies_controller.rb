@@ -1,4 +1,5 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
   def index
     @q = Movie.ransack(params[:query])
     @movies = @q.result.page(params[:page])
@@ -20,6 +21,9 @@ class MoviesController < ApplicationController
     end
 
   end
+  def show
+    @movie = Movie.find(params[:id])
+  end
 
   def new
     @movie = Movie.new
@@ -30,13 +34,22 @@ class MoviesController < ApplicationController
     @movie.image.attach(params[:movie][:image])
 
     if @movie.save
-      redirect_to @moviegybn  
+      redirect_to @movie
     else
       render :new, status: :unprocessable_entity
     end
   end
   def edit
     @movie = Movie.find(params[:id])
+  end
+  def update
+    @movie = Movie.find(params[:id])
+
+    if @movie.update(movie_params)
+      redirect_to @movie
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 
