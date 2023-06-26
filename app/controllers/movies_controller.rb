@@ -1,5 +1,7 @@
 class MoviesController < ApplicationController
   before_action :authenticate_user!
+  # respond_to :html, :json
+  
   def index
     @q = Movie.ransack(params[:query])
     @movies = @q.result.page(params[:page])
@@ -9,7 +11,16 @@ class MoviesController < ApplicationController
       Movie.find_each do |movie|
         csv << movie.attributes.values
       end
+
+      respond_to do |format|
+        format.html
+
+        format.json do
+          render json: {data: @movies}
+        end
+      end
     end
+
     def import()
       file = params[:file]
       csv_text = file.read
