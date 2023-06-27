@@ -1,4 +1,7 @@
 class MoviesController < ApplicationController
+  before_action :authenticate_user!
+  # respond_to :html, :json
+  
   def index
     @q = Movie.ransack(params[:query])
     @movies = @q.result.page(params[:page])
@@ -8,7 +11,16 @@ class MoviesController < ApplicationController
       Movie.find_each do |movie|
         csv << movie.attributes.values
       end
+
+      respond_to do |format|
+        format.html
+
+        format.json do
+          render json: {data: @movies}
+        end
+      end
     end
+
     def import()
       file = params[:file]
       csv_text = file.read
@@ -20,6 +32,9 @@ class MoviesController < ApplicationController
     end
 
   end
+  def show
+    @movie = Movie.find(params[:id])
+  end
 
   def new
     @movie = Movie.new
@@ -30,13 +45,22 @@ class MoviesController < ApplicationController
     @movie.image.attach(params[:movie][:image])
 
     if @movie.save
-      redirect_to @moviegybn  
+      redirect_to @movie
     else
       render :new, status: :unprocessable_entity
     end
   end
   def edit
     @movie = Movie.find(params[:id])
+  end
+  def update
+    @movie = Movie.find(params[:id])
+
+    if @movie.update(movie_params)
+      redirect_to @movie
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
 

@@ -1,12 +1,10 @@
-
-<a href="data:text/csv;charset=utf-8, <%= @csv_string %>" download="movies.csv" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download CSV</a>
-<form action="/movies/import" method="post" enctype="multipart/form-data">
-  <input type="file" name="file" accept=".csv">
-  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Import CSV</button>
-</form>
-
+   
 <div class="w-full flex justify-center py-5 bg-slate-500" >
-  <h1 class="text-4xl font-bold items-center ">Welcome to Movie Blazer</h1>
+  <h1 class="text-4xl font-bold   items-center ">Welcome to Movie Blazer</h1>
+    <% if user_signed_in? %>
+        <%= button_to "Sign Out" , destroy_user_session_path,
+          method: :delete, class: "nav-link bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded "%>
+    <%end%>   
 </div>
 <div class="flex  justify-center items-center   bg-gray-400">
  
@@ -33,7 +31,7 @@
       </div>
     </div>
   </div>
-     
+  <ul>
   <div class=" basis-5/6 w-full flex flex-col p-2">
     <table class="w-full border-collapse">
       <thead>
@@ -47,13 +45,14 @@
           <th class="border-b py-2 px-4">Release Date</th>
           <th class="border-b py-2 px-4"><%= sort_link(@q, :rating, 'Rating') %></th>
           <th class="border-b py-2 px-4">Run Time</th>
+          <th class= "border-b py-2 px-4">Modify</th>
         </tr>
       </thead>
       <tbody class="h-full">
         <% @movies.each do |movie| %>
         <tr>
           <td class="w-6 h-6"><%= image_tag movie.image_url %>
-          <td class="border-b py-[1rem] px-4"><%= movie.name %></td>
+          <td class="border-b py-[1rem] px-4"><a href="/movies/<%= movie.id %>"><%= movie.name %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.description%></td>
           <td class="border-b py-[1rem] px-4"><%= movie.genre %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.language %></td>
@@ -61,7 +60,7 @@
           <td class="border-b py-[1rem] px-4"><%= movie.release_date %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.rating %></td>
           <td class="border-b py-[1rem] px-4"><%= movie.run_time %></td>
-          
+          <td><%= link_to "Edit", edit_movie_path(movie.id) %></td>
 
         
           
@@ -71,6 +70,13 @@
         
     </table>
   </div>
+</div>
+<div class = "flex">
+  <a href="data:text/csv;charset=utf-8, <%= @csv_string %>" download="movies.csv" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download CSV</a>
+  <form action="/movies/import" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" accept=".csv">
+  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Import CSV</button>
+</form>
 </div>
 <div>
     <%= paginate @movies %> 

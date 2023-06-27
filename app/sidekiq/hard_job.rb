@@ -1,5 +1,5 @@
 class HardJob
-  include Sidekiq::Job
+  # include Sidekiq::Job
 
   def perform(*args)
     Rails.logger.info "+++++++++++++++++++++++++++++++++++"
