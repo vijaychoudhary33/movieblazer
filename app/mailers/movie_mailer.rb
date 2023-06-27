@@ -1,6 +1,6 @@
 class MovieMailer < ApplicationMailer
     default from: 'notifications@example.com'
-    def welcome_email
-      mail(to: 'vijaychoudhary@gmail.com', subject: 'Welcome to My Awesome Site')
+    def welcome_email(email)
+      mail(to: email, subject: 'Welcome to My Awesome Site')
     end
 end

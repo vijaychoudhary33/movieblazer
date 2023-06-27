@@ -87,3 +87,5 @@ gem 'csv'
 # gem "sidekiq"
 gem "active_model_serializers"
 gem "devise", "~> 4.9"
+
+gem "sidekiq", "~> 7.1"
