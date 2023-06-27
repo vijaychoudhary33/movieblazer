@@ -16,7 +16,7 @@ class MoviesController < ApplicationController
         format.html
 
         format.json do
-          render json: {data: @movies}
+          render json: @movies
         end
       end
     end
