@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_29_063748) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_29_080227) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -47,7 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_29_063748) do
     t.integer "size"
     t.string "status"
     t.string "path"
-    t.string "type"
+    t.string "file_type"
     t.datetime "imported_at"
     t.datetime "end_imported_at"
     t.datetime "created_at", null: false

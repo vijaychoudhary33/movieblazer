@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root "welcomes#index"
   resources :movies
+  resources :imports
   post '/movies/import', to: 'movies#import'
 
 end
