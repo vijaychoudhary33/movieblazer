@@ -22,8 +22,21 @@
           <%= button_to "Sign Out", destroy_user_session_path,
             method: :delete, class: "nav-link bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
           </div>
+          
         <% end %>
       </div>
+      <div class="w-full flex  bg-slate-400">
+      <% if user_signed_in? %>
+        <%= link_to "Import file", imports_path, class: "inline-block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mr-4" %>
+        <%= link_to "Movies", movies_path, class: "inline-block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mr-4" %>
+        <a href="data:text/csv;charset=utf-8, <%= @csv_string %>" download="movies.csv" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-4">Download CSV</a>
+      <%end%>
+        <% if current_user %>
+          <%= link_to "Monitor Job", sidekiq_web_path , class: "inline-block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mr-4"%>
+        <% end %>
+
+      </div>
+
 
       <%= yield %>
     </main>

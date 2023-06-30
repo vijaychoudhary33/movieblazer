@@ -1,4 +1,4 @@
-<%= link_to "Import File", imports_path, class: "inline-block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded" %>
+
 
 <div class="flex px-5 py-5">
   <div class="basis-1/6 w-full flex flex-col p-2">
@@ -62,21 +62,16 @@
     </table>
   </div>
 </div>
-<div class = "flex">
-  <a href="data:text/csv;charset=utf-8, <%= @csv_string %>" download="movies.csv" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Download CSV</a>
+<%# <div class = "flex">
   <form action="/movies/import" method="post" enctype="multipart/form-data">
   <input type="file" name="file" accept=".csv">
   <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Import CSV</button>
 </form>
-</div>
+</div> %>
 <div>
     <%= paginate @movies %> 
 </div>
-<div>
-  <% if current_user %>
-    <%= link_to "Monitor Job", sidekiq_web_path %>
-  <% end %>
-</div>
+
 
 
 

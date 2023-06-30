@@ -1,10 +1,13 @@
 <div class="w-full flex justify-center py-5 bg-slate-500">
-  <ul class = "navbar-nav mr-auto">
+  <ul class = " flex navbar-nav mr-auto">
     <li class = "nav-item active">
         <%= link_to "Sign Up" , new_user_session_path,
-          class: "nav-link"%>  
+          class: "nav-link mx-4"%>  
     </li>
+    <li class = "nav-item active">
+      <%= link_to " Sign In", user_session_path, class: "nav-link"%>
     </ul> 
    
 </div>
+
 

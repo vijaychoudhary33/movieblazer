@@ -1,20 +1,36 @@
 class ImportsController < ApplicationController
+   
 
     def index
         @imports = Import.all
     end
-
+    
+    def new
+        @import = Import.new
+    end
 
     def create
-        import = Import.new(import_params)
-        import.file.attach(params[:import][:file])
+        @import = Import.new(import_params)
+        @import.name = params[:file].original_filename.split(".").first
+        @import.size = (params[:file].size) 
+        @import.file_type = params[:file].content_type
+        @import.path = params[:file].path
+    
+
+        if @import.save
+            redirect_to @import, notice: 'File uploaded successfully.'
+        else
+           
+        end 
     end
+       
+    
 
 
 
 
     def import_params
-        params.require(:import).permit(:name, :size, :status, :path, :type, :imported_at, :end_imported_at, :file)
+        params.permit(:file)
     end
       
 end
