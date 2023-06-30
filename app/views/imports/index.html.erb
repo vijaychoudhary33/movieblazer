@@ -1,0 +1,43 @@
+<div class="flex justify-center items-center ">
+  <%= form_with(model: @import, url: imports_path, multipart: true, html: { class: "flex flex-col" }) do |form| %>
+    <%= form.file_field :file, class: "py-2 px-4 mb-4 border rounded" , required: true %>
+    <%= form.submit "Upload File", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+   
+  <% end %>
+</div>
+
+<div class="flex px-5 py-5">
+  <div class=" w-full flex flex-col p-2">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b py-2 px-4">Name</th>
+          <th class="border-b py-2 px-4">Size</th>
+          <th class="border-b py-2 px-4">Status</th>
+          <th class="border-b py-2 px-4">Path</th>
+          <th class="border-b py-2 px-4">File_type</th>
+          <th class="border-b py-2 px-4">Import Time</th>
+          <th class="border-b py-2 px-4">End Imported </th>
+        </tr>
+      </thead>
+      <tbody class="h-full">
+        <% @imports.each do |import| %>
+        <tr>
+          <td class="border-b py-[1rem] px-4"><%= import.name %></td>
+          <td class="border-b py-[1rem] px-4"><%= import.size%></td>
+          <td class="border-b py-[1rem] px-4"><%= import.status %></td>
+          <td class="border-b py-[1rem] px-4"><%= import.path%></td>
+          <td class="border-b py-[1rem] px-4"><%= import.file_type%></td>
+          <td class="border-b py-[1rem] px-4"><%= import.imported_at%></td>
+          <td class="border-b py-[1rem] px-4"><%= import.end_imported_at%></td>
+
+
+        </tr>
+        <% end %>
+        </tbody>
+        
+    </table>
+  </div>
+</div>
+
+
