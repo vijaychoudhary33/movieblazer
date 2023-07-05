@@ -33,6 +33,7 @@ class MoviesController < ApplicationController
     end
 
   end
+
   def show
     @movie = Movie.find(params[:id])
   end
@@ -51,9 +52,11 @@ class MoviesController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def edit
     @movie = Movie.find(params[:id])
   end
+
   def update
     @movie = Movie.find(params[:id])
 
