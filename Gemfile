@@ -58,6 +58,10 @@ group :development, :test do
 
    ## rspec, rspec-rails , database-cleaner, faker, fixtures 
   gem 'rspec-rails', '~> 6.0.0'
+  gem 'factory_bot'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'faker'
 end
 
 group :development do
@@ -79,7 +83,7 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'faker'
+
 gem 'ransack'
 
 gem 'kaminari'

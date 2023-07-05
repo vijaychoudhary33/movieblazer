@@ -93,6 +93,12 @@ GEM
     connection_pool (2.4.1)
     crass (1.0.6)
     csv (3.2.6)
+    database_cleaner (2.0.2)
+      database_cleaner-active_record (>= 2, < 3)
+    database_cleaner-active_record (2.1.0)
+      activerecord (>= 5.a)
+      database_cleaner-core (~> 2.0.0)
+    database_cleaner-core (2.0.1)
     date (3.3.3)
     debug (1.8.0)
       irb (>= 1.5.0)
@@ -107,6 +113,8 @@ GEM
     erubi (1.12.0)
     et-orbi (1.2.7)
       tzinfo
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
@@ -304,8 +312,10 @@ DEPENDENCIES
   bootsnap
   capybara
   csv
+  database_cleaner
   debug
   devise (~> 4.9)
+  factory_bot
   faker
   image_processing (>= 1.2)
   importmap-rails
