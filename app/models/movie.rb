@@ -20,6 +20,11 @@ class Movie < ApplicationRecord
           ''
         end
     end
+    
+    def topmovie
+      "top Gun"
+    end
+
 
     private 
     ransacker :rating do

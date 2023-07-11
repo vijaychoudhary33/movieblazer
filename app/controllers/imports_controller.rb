@@ -18,7 +18,7 @@ class ImportsController < ApplicationController
     
 
         if @import.save
-            redirect_to @import, notice: 'File uploaded successfully.'
+           ect_to @impor redirt, notice: 'File uploaded successfully.'
         else
            
         end 

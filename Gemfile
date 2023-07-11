@@ -59,9 +59,9 @@ group :development, :test do
    ## rspec, rspec-rails , database-cleaner, faker, fixtures 
   gem 'rspec-rails', '~> 6.0.0'
   gem "factory_bot_rails"
-  gem 'capybara'
   gem 'database_cleaner'
   gem 'faker'
+  gem 'rails-controller-testing'
 end
 
 group :development do
