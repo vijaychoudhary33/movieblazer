@@ -1,0 +1,23 @@
+<div class="flex justify-center">
+  <h1 class="text-2xl font-bold mb-4">My Watchlist Items</h1>
+</div>
+
+<div class="w-full flex flex-col p-2">
+  <table class="w-full border-collapse">
+    <thead>
+      <tr>
+        <th class="border-b py-2 px-4">Movie Name</th>
+        <th class="border-b py-2 px-4">Watchlist Name</th>
+      </tr>
+    </thead>
+    <tbody class="h-full">
+      <% @items.each do |item| %>
+      <tr>
+        <td class="border-b py-4 px-4 text-center"><a href="/movies/ <%= item.movie_id %>" class="text-blue-500 hover:text-red-500"><%= item.movie.name %></td>
+        <td class="border-b py-4 px-4 text-center"><%= @watchlist.name %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+

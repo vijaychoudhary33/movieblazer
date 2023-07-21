@@ -1,5 +1,4 @@
 class Movie < ApplicationRecord
-    
     paginates_per 10
     has_one_attached :image, :dependent=> :destroy
     def self.ransackable_attributes(auth_object = nil)

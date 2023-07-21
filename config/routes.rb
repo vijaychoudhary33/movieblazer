@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   root "welcomes#index"
   resources :movies
   resources :imports
+  resources :watchlists
   post '/imports/upload', to: 'import#upload'
   post '/movies/import', to: 'movies#import'
 

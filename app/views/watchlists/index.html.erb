@@ -1,0 +1,54 @@
+<div class="flex justify-between items-center py-3">
+  <h1 class="text-3xl  items-center mx-auto">My Watchlist</h1>
+  <div class="ml-auto">
+    <%= link_to "Create Watchlist", new_watchlist_path, class: "inline-block px-4 py-2 bg-blue-500 hover:bg-blue-700 text-white font-bold rounded mr-4  py-2 px-4"%> 
+  </div>
+</div>
+<div class="flex px-5 py-5">
+  <div class="basis-1/6 w-full flex flex-col p-2">
+    <%= search_form_for @q do |f|%>
+    <div class="flex flex-col space-y-4">
+      <h5 class="text-center">Search Filter </h5>
+      <%= label_tag :name, "Name" %>
+      <%= f.text_field :name_cont, placeholder: "Enter Watchlist name" %>
+      <%= label_tag :visibility, "visibility" %>
+      <%= f.select :visibility_cont, ['open', 'closed'], default: '', prompt: "Select a Filter" %>
+      <div class="flex w-full justify-between items-baseline">
+        <%= f.submit "Filter", class:"bg-indigo-400 text-white px-3 py-3 my-3 rounded w-[5rem] text-center ml-[4.5rem]" %>
+      </div>
+    <% end %>
+    <div class="flex w-full justify-between items-baseline">
+        <%= button_to "Clear",watchlists_path, method: :get  ,class:"bg-indigo-400 text-white rounded w-[5rem] h-[48px]" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="w-full flex flex-col p-2">
+    <table class="w-full border-collapse">
+      <thead>
+        <tr>
+          <th class="border-b py-2 px-4"><%= sort_link(@q, :name, 'Watchlist Name') %></th>
+          <th class="border-b py-2 px-4"><%= sort_link(@q, :visibility, 'Visibility') %></th>
+          <th class="border-b py-2 px-4">show</th>
+        </tr>
+      </thead>
+      <tbody class="h-full">
+        <% @watchlists.each do |list| %>
+        <tr>
+          <td class="border-b py-4 px-4 text-center"><%= list.name %></td>
+          
+          <td class="border-b py-4 px-4 text-center"><%= list.visibility %></td>
+          <td class="border-b py-4 px-4 text-center"><%= link_to 'View', watchlist_path(list.id), class: 'text-blue-500 hover:text-red-500' %>
+
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<div>
+    <%= paginate @watchlists %> 
+</div>

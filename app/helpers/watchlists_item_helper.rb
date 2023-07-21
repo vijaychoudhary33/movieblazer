@@ -1,0 +1,2 @@
+module WatchlistsItemHelper
+end
