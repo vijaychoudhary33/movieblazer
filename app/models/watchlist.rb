@@ -1,6 +1,7 @@
 class Watchlist < ApplicationRecord
   belongs_to :user
   has_many :items, class_name: 'WatchlistsItem'
+  paginates_per 10
 
   def self.ransackable_attributes(auth_object = nil)
     %w(name visibility)

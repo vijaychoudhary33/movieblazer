@@ -10,7 +10,9 @@ class User < ApplicationRecord
 
   # Associations 
   has_many :watchlists
-
+  has_many :rentals
+  has_many :billings
+  has_one :subscription
   protected
     def send_welcome_mail
       WelcomeMailJob.perform_at(Time.now,email)
