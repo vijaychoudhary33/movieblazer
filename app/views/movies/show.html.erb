@@ -1,12 +1,17 @@
-<h1><%= @movie.name %></h1>
-
-<p><%= @movie.description %></p>
-<p><%= @movie.genre %></p>
-<p><%= @movie.language %></p>
-<p><%= @movie.director %></p>
-<p><%=  @movie.release_date  %></p>
-<p><%=@movie.rating %></p>
-<p><%= @movie.run_time  %></p>
-<ul>
-  <li><%= link_to "Edit", edit_movie_path(@movie) %></li>
-</ul>
+  <div class="container mx-auto mt-8">
+    <div class="bg-gray-200 p-6 rounded-lg shadow-lg">
+      <%= image_tag @movie.image_url, class: "w-64 h-64 mx-auto mb-4" %>
+      <h1 class="heading mb-2"><%= @movie.name %></h1>
+      <p class="text-lg mb-2"><%= @movie.description %></p>
+      <div class="grid grid-cols-2 gap-2">
+        <p class="text-sm"><strong>Genre:</strong> <%= @movie.genre %></p>
+        <p class="text-sm"><strong>Release Date:</strong> <%= @movie.release_date %></p>
+        <p class="text-sm"><strong>Director:</strong> <%= @movie.director %></p>
+        <p class="text-sm"><strong>Rating:</strong> <%= @movie.rating %></p>
+      </div>
+      <ul class="list-disc mt-2">
+        <li><%= link_to "Edit", edit_movie_path(@movie), class: "text-blue-500" %></li>
+        <li><%= link_to "Rent Movie", new_rental_path(movie_id: @movie.id), class: "btn btn-primary" %></li>
+      </ul>
+    </div>
+  </div>

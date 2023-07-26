@@ -1,0 +1,18 @@
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+    <h1 class="text-3xl font-bold mb-4">Rent Movie</h1>
+
+    <%= form_with(model: @rental, url: rentals_path) do |form| %>
+      <%= form.hidden_field :user_id, value: current_user.id %>
+      <%= form.hidden_field :movie_id %>
+      <%= form.hidden_field :starting_date, value: Date.today %>
+
+      <div class="mb-4">
+        <%= form.label :Select_End_Date, class: "block font-semibold" %>
+        <%= form.date_field :end_date, class: "mt-1 block w-full p-2 border border-gray-300 rounded-md" %>
+      </div>
+
+      <%= form.submit "Rent Movie", class: "btn btn-primary py-2 px-4 rounded-lg bg-blue-500 text-white font-semibold hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-opacity-50 w-full" %>
+    <% end %>
+  </div>
+</div>

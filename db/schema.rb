@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_13_071951) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_25_074725) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -42,6 +42,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_071951) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "billings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "rent_id", null: false
+    t.date "billing_date"
+    t.float "total_amount"
+    t.string "payment_method"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["rent_id"], name: "index_billings_on_rent_id"
+    t.index ["user_id"], name: "index_billings_on_user_id"
+  end
+
   create_table "imports", force: :cascade do |t|
     t.string "name"
     t.integer "size"
@@ -65,6 +77,35 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_071951) do
     t.decimal "run_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "movie_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.date "starting_date"
+    t.date "end_date"
+    t.index ["movie_id"], name: "index_rentals_on_movie_id"
+    t.index ["user_id"], name: "index_rentals_on_user_id"
+  end
+
+  create_table "subscription_plans", force: :cascade do |t|
+    t.string "name"
+    t.integer "duration"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subscription_plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "status"
+    t.index ["subscription_plan_id"], name: "index_subscriptions_on_subscription_plan_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -104,6 +145,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_13_071951) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "billings", "rentals", column: "rent_id"
+  add_foreign_key "billings", "users"
+  add_foreign_key "rentals", "movies"
+  add_foreign_key "rentals", "users"
+  add_foreign_key "subscriptions", "subscription_plans"
+  add_foreign_key "subscriptions", "users"
   add_foreign_key "watchlists", "users"
   add_foreign_key "watchlists_items", "movies"
   add_foreign_key "watchlists_items", "watchlists"

@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   resources :movies
   resources :imports
   resources :watchlists
+  resources :rentals
+  resources :subscription_plans
+  resources :subscriptions
+  
   post '/imports/upload', to: 'import#upload'
   post '/movies/import', to: 'movies#import'
 
