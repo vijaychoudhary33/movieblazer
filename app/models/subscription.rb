@@ -1,6 +1,6 @@
 class Subscription < ApplicationRecord
   belongs_to :user
-  belongs_to :plan, class_name: :subscription_plan, foreign_key: 'subscription_plan_id'
+  belongs_to :subscription_plan
 
   enum status: { active: 'active', expired: 'expired', canceled: 'canceled' }
 
