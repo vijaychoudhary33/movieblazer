@@ -48,6 +48,10 @@ class MoviesController < ApplicationController
 
     if @movie.save
       redirect_to @movie
+      Pusher.trigger('movie-channel','new-movie', {
+         message: 'hello message'
+          })
+
     else
       render :new, status: :unprocessable_entity
     end
@@ -55,6 +59,7 @@ class MoviesController < ApplicationController
 
   def edit
     @movie = Movie.find(params[:id])
+
   end
 
   def update
@@ -62,6 +67,9 @@ class MoviesController < ApplicationController
 
     if @movie.update(movie_params)
       redirect_to @movie
+      Pusher.trigger('movie-channel','new-movie', {
+         message: 'hello message'
+          })
     else
       render :edit, status: :unprocessable_entity
     end

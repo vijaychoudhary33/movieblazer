@@ -74,3 +74,64 @@
     <%= paginate @movies %> 
 </div>
 
+    
+    <script>
+        var pusher = new Pusher('e011588101e7d34afb63', {
+          cluster: 'eu',
+          encrypted: true
+        });
+    </script>
+    
+    <div class="wrapper">
+    </div>
+    
+    <script>
+        var channel = pusher.subscribe('movie-channel');
+        channel.bind('new-movie', function(data) {
+            // let movie_media = data.media;
+            let movie_id = data.id                                                
+            let movie_description = data.description;
+            let movie_genre = data.genre;
+    
+            let div = document.getElementById('movie_section');
+            let new_content = document.createElement("div");
+            new_content.innerHTML = `
+                <div class="movie-card">
+                    <div class="movie_description">
+                        <h2>${movie_description}</h2>
+                    </div>
+                    <div class="movie_genre">
+                        <p>${movie_genre}</p>
+                    </div>
+                </div>`;
+            div.insertBefore(new_content, div.firstChild);
+        });
+    </script> 
+
+
+<!DOCTYPE html>
+<head>
+  <title>Pusher Test</title>
+  <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script>
+  <script>
+
+    // Enable pusher logging - don't include this in production
+    Pusher.logToConsole = true;
+
+    var pusher = new Pusher('e011588101e7d34afb63', {
+      cluster: 'ap2'
+    });
+
+    var channel = pusher.subscribe('movie-channel');
+    channel.bind('new-movie', function(data) {
+      alert(JSON.stringify(data));
+    });
+  </script>
+</head>
+<body>
+  <h1>Pusher Test</h1>
+  <p>
+    Try publishing an event to channel <code>my-channel</code>
+    with event name <code>my-event</code>.
+  </p>
+</body>
